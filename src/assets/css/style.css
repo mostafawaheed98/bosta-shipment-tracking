@@ -1,0 +1,41 @@
+/*Importing Used Font (Cairo) from Google Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
+
+/*Applying Smooth Effect on hovering and any other actions*/
+*{transition: all 0.25s ease-in-out;}
+
+/*Start of Utilities*/
+input{direction: rtl;text-align: right;}
+.hr-w-10{
+    width: 10%;
+    height: 3px !important;
+    color: #ff0000;
+    opacity: 100% !important;
+}
+form input{
+    padding: 10px !important;
+}
+form button.btn{
+    background-color: #ff0000;
+}
+/*End of Utilities*/
+
+/*Start of body*/
+body{
+    font-family: 'Cairo', sans-serif;
+    min-width: 100vh;
+}
+/*End of body*/
+
+/*Start of Navbar*/
+.navbar-light .navbar-nav .nav-link{
+    color: rgba(0,0,0,1);
+    font-weight: bold;
+}
+.navbar-light .navbar-nav.ml-auto .nav-item:last-of-type > a{
+    color: #ff0000;
+}
+.navbar-expand-lg .navbar-nav .nav-link{
+    padding: 0.5rem 1.5rem;
+}
+/*End of Navbar*/
