@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {useForm} from 'react-hook-form';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -7,10 +9,17 @@ import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 function TrackingForm() {
 
-    const {apiResonse, setAPIResonse} = useState(null);
+    const TRACK_API_URL = 'https://tracking.bosta.co/shipments/track/';
+    const navigate = useNavigate();
     const {register, handleSubmit, setError, formState: {errors, isSubmitting}} = useForm();
-    const onSubmit = (data)=>{
-        fetch(`https://tracking.bosta.co/shipments/track/${data.trackingCode}`).then((res)=>res.json()).then((data)=>{console.log(data)});
+    const onSubmit = async (data)=>{
+        await axios.get(TRACK_API_URL + data.trackingCode)
+        .then((result)=>{
+            navigate("shipment-details/" + data.trackingCode, {state: result.data})
+        })
+        .catch(()=>{
+            setError("trackingCode", {message: "لا يوجد لدينا شحنة بهذا الرقم"})
+        })
     }
 
     return (
@@ -36,7 +45,9 @@ function TrackingForm() {
                                         message: 'لا يمكن أن يكون الرقم أقل من 7 ارقام'
                                     }
                                 })} type="number" className="form-control" placeholder="مثال: 6636234" aria-describedby="button-addon2"/>
-                                <button className="btn text-light" type="submit" id="button-addon2">تتبع الشحنة <FontAwesomeIcon icon={faSearch}/></button>
+                                <button className="btn text-light" type="submit" id="button-addon2">
+                                    تتبع الشحنة <FontAwesomeIcon icon={isSubmitting? faSpinner : faSearch} pulse={isSubmitting}/>
+                                </button>
                             </div>
                             </form>
                         </div>

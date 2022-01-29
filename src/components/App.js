@@ -6,6 +6,7 @@ import Helmet from 'react-helmet';
 // Importing Components
 import Layout from './layout/Layout';
 import TrackingForm from './pages/TrackingForm';
+import ShipmentDetails from './pages/ShipmentDetails';
 
 function App() {
     return (
@@ -19,6 +20,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<TrackingForm/>}/>
+                    <Route path="*" element={<h1>خطأ - هذه الصفحة غير موجودة</h1>}/>
+                    <Route path="shipment-details/:id" element={<ShipmentDetails/>}/>
                     <Route path="login" element={<h1>تسجيل الدخول</h1>} />
                 </Route>
             </Routes>
