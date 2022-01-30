@@ -10,8 +10,12 @@ import App from './components/App';
 import './components/utils/i18n';
 
 // Importing Main CSS Files
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.rtl.min.css';
 import './assets/css/style.css';
+
+// Importing Bootstrap JS File
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle';
 
 
 ReactDOM.render(
