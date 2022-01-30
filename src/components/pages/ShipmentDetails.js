@@ -24,17 +24,19 @@ function ShipmentDetails() {
         const setSteps = ()=>{
             const events = state.TransitEvents;
             const getStateIndex = (shipmentState)=> events.findIndex(event => event.state === shipmentState);
-            document.querySelectorAll('ol.steps>li').forEach((node,index)=>{
+            document.querySelectorAll('ol.steps>li').forEach((node)=>{
                 if (getStateIndex(node.dataset.state) !== -1 && getStateIndex(node.dataset.state) === events.length-1) {
                     node.classList.add('is-active');
-                    return;
                 }
                 else if (getStateIndex(node.dataset.state) !== -1 && getStateIndex(node.dataset.state) !== events.length-1) {
                     node.classList.add('is-active', 'is-complete')
                 }
                 if (getStateIndex('DELIVERED_TO_SENDER') !== -1 && getStateIndex('DELIVERED_TO_SENDER') === events.length-1) {
-                    document.getElementById("OUT_FOR_DELIVERY_STEP").classList.add('is-active');
-                    return;
+                    document.getElementById("DELIVERED_STEP").classList.remove('is-active', 'is-complete');
+                    document.getElementById("OUT_FOR_DELIVERY_STEP").classList.remove('is-complete');
+                    document.getElementById("OUT_FOR_DELIVERY_STEP").classList.add('is-stopted');
+                    document.getElementById("OUT_FOR_DELIVERY_STEP").innerHTML = `${t(`shipmentStatus.${state.CurrentStatus.state}`)}`;
+                    return
                 }
             });
         }
@@ -84,7 +86,7 @@ function ShipmentDetails() {
                         <li className="step" id="OUT_FOR_DELIVERY_STEP" data-state='OUT_FOR_DELIVERY' data-step="3">
                             {t('shipmentStatus.OUT_FOR_DELIVERY')}<br/>
                         </li>
-                        <li className="step" id="DELIVERED" data-state='DELIVERED' data-step="4">
+                        <li className="step" id="DELIVERED_STEP" data-state='DELIVERED' data-step="4">
                             {t('shipmentStatus.DELIVERED')}
                         </li>
                     </ol>

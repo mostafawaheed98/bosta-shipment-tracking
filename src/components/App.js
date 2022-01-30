@@ -21,8 +21,11 @@ function App() {
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<TrackingForm/>}/>
                     <Route path="*" element={<h1>خطأ - هذه الصفحة غير موجودة</h1>}/>
-                    <Route path="shipment-details/:id" element={<ShipmentDetails/>}/>
+                    <Route path="home" element={<h1>الصفحة الرئيسية</h1>}/>
+                    <Route path="pricing" element={<h1>الأسعار</h1>}/>
+                    <Route path="contact-sales" element={<h1>كلم المبيعات</h1>}/>
                     <Route path="login" element={<h1>تسجيل الدخول</h1>} />
+                    <Route path="shipment-details/:id" element={<ShipmentDetails/>}/>
                 </Route>
             </Routes>
         </>

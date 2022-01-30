@@ -10,7 +10,7 @@ function Layout() {
             <div className='container mt-3'>
                 <Outlet/>
             </div>
-            {/* <Footer /> */}
+            <Footer />
         </>
     );
 }

@@ -95,8 +95,11 @@ body{
   .steps > .step:last-child:after {
     display: none;
   }
-  .steps > .step.is-complete {
-    color: #222;
+  .steps > .step.is-complete, .steps > .step.is-active{
+    color: #39bf23;
+  }
+  .steps > .step.is-stopted {
+    color: #ff0000;
   }
   .steps > .step.is-complete:before {
     content: "✓";
@@ -106,6 +109,10 @@ body{
   }
   .steps > .step.is-complete:after {
     background: #39bf23;
+  }
+  .steps > .step.is-stopted::before {
+    background: #ff0000 !important;
+    border: 2px solid #ff0000 !important;
   }
   .steps > .step.is-active:before {
     color: #fff;
